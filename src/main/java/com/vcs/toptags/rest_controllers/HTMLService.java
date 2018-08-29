@@ -11,9 +11,6 @@ import java.util.List;
 @Component
 public class HTMLService {
 
-//    @Value("${timeCheck}")
-//    private String lockalTime;
-
     @Autowired
     private CheckTime checkTime;
 

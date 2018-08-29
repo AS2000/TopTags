@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.vcs.toptags.actions.Actions.LAST_TOP_WORDS;
+import static com.vcs.toptags.rest_controllers.CalculationThread.LAST_TOP_WORDS;
 
 
 @RestController
