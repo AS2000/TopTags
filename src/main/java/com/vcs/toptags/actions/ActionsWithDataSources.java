@@ -5,14 +5,19 @@ import com.vcs.toptags.cleaning_process.CleanAndCalculate;
 import com.vcs.toptags.io.TopWordsQty;
 import com.vcs.toptags.page_adapters.INewsPage;
 import com.vcs.toptags.page_adapters.NewsPageObjects;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@Component
+//@PropertySource("config.properties")
+@Component
 public class ActionsWithDataSources {
 
 //    @Value("${qtyTopWords}")
-//    private int qtyTopWords;
+//    private static int qtyTopWords;
 
 
     public List<INewsPage> actionsWithNewsWebPages() {
@@ -23,7 +28,7 @@ public class ActionsWithDataSources {
         //Get Active (JavaScript) links of pages with text
         for (int i = 0; i < newsPageList.size(); i++) {
 
-            // get active links from the Page Java Script Dynamic links and Set it To Page Object
+            // get from the Page Java Script Dynamic links and Set it To Page Object
             setJSLinksFromWebPageToObject(newsPageList.get(i));
 
             // filteredTopWordsArray [] moved to the Object value

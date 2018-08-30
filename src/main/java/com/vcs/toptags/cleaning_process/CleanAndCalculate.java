@@ -44,9 +44,6 @@ public class CleanAndCalculate {
 
     }
 
-    // Pages Names And Tags From Enum List
-
-
     // Words Calculation
     private Map<String, Integer> calculatedWords(List<String> pureTextList) {
         CountWords cw = new CountWords();

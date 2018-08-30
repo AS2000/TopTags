@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource("classpath:config.properties")
 @ComponentScan({"com.vcs.toptags.*"})
 public class Application {
 
