@@ -15,7 +15,7 @@ public class OpenUselesWordFile {
 
     private List<String> loadList() {
 
-        final String FILE_NAME = "useleswords.txt";
+        final String FILE_NAME = "uselesswords.txt";
 
         try {
             File file = new File(FILE_NAME);
