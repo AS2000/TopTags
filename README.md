@@ -18,4 +18,3 @@ Atlikta:
 17. sukurtas web out'as naudojant sugeneruota html lentele
 
 Reikia atlikti:
-1. qtyTopWords => Spring boot @Value

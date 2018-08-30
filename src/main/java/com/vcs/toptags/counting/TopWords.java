@@ -1,21 +1,16 @@
 package com.vcs.toptags.counting;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.Map;
 
-@Component
 public class TopWords {
 
-    @Bean
     public String[] getTopWords(Map<String, Integer> map, int qtyTopWords) {
 
         return calculateTop(map, qtyTopWords);
     }
 
-    @Bean
     private String[] calculateTop(Map<String, Integer> map, int qtyTopWords) {
         String[] array = new String[qtyTopWords];
 
