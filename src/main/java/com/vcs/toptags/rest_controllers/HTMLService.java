@@ -1,5 +1,6 @@
 package com.vcs.toptags.rest_controllers;
 
+import com.vcs.toptags.cleaning_process.CleanWebDomain;
 import com.vcs.toptags.io.CheckTime;
 import com.vcs.toptags.page_adapters.INewsPageTopWordsWithLink;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,12 @@ public class HTMLService {
 //        return html;
 //    }
 
+
+    private String cleanWebDomain(String domainName){
+
+        return new CleanWebDomain().getCleanWebDomain(domainName);
+    }
+
     private String addWebDomainToTitle(List<INewsPageTopWordsWithLink> pageList) {
         String html = "";
 
@@ -88,9 +95,9 @@ public class HTMLService {
 
         for (int j = 0; j < pageList.size(); j++) {
 
-            html += "<td style = \"padding: 5px\">";
+            html += "<td style = \"padding: 5px\" align = \"center\">";
 
-            html += "<b>" + pageList.get(j).getWebDomain() + "</b>";
+            html += "<a href = \"/json/" + cleanWebDomain(pageList.get(j).getWebDomain()) + "\"><b>" + cleanWebDomain(pageList.get(j).getWebDomain()) + "</b></a>";
 
             html += "</td>";
         }
@@ -165,7 +172,7 @@ public class HTMLService {
         String html = "";
 
         for (int k = 0; k < pageList.size(); k++) {
-            html += "<td align = \"center\">";
+            html += "<td align = \"center\" style = \"padding: 5px\">";
 
             html += (pageList.get(k)).getFilteredTopWordsArray()[i];
 
