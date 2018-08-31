@@ -46,7 +46,7 @@ public class TagRest {
     @RequestMapping(value = "/{text}", method = RequestMethod.GET)
     public String wrongText(@PathVariable("text") String textFromRequest) {
         return "<!DOCTYPE html><html><body><h1>Neteisingas pletinys</h1><br><p>tokio pletinio nera:<b> " + textFromRequest +
-                "</p>Naudok: <b>/</b>  arba  <b>/json  arba  <b>/jason/web_page_name (alfa, delfi, diena, vz)</b></body></html>";
+                "</p>Naudok: <b>/</b>  arba  <b>/json</b></body></html>";
     }
 
 
