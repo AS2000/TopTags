@@ -9,9 +9,8 @@ public class NewsPageTopWords implements INewsPageTopWords {
     }
 
     public NewsPageTopWords(String[] filteredTopWordsArray) {
-        synchronized (this.filteredTopWordsArray) {
+
             this.filteredTopWordsArray = filteredTopWordsArray;
-        }
     }
 
     @Override
