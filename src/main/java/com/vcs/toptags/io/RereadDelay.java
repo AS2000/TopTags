@@ -6,10 +6,8 @@ import java.util.Properties;
 public class RereadDelay {
     public int getTimeOutMin() {
         try {
-            File f = new File("config.properties");
-            InputStream inStream = new FileInputStream(f);
             Properties prop = new Properties();
-            prop.load(inStream);
+            prop.load(getClass().getClassLoader().getResourceAsStream("application.properties"));
 
             return Integer.valueOf(prop.getProperty("timeOutMin", "15"));
 

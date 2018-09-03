@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@PropertySource("config.properties")
+//@PropertySource("application.properties")
 @Component
 public class ActionsWithDataSources {
 

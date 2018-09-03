@@ -3,12 +3,15 @@ package com.vcs.toptags.rest_controllers;
 import com.vcs.toptags.cleaning_process.CleanWebDomain;
 import com.vcs.toptags.io.CheckTime;
 import com.vcs.toptags.page_adapters.INewsPageTopWordsWithLink;
+import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 import java.util.List;
-
 
 @Component
 public class HTMLService {
@@ -16,6 +19,10 @@ public class HTMLService {
     @Autowired
     private CheckTime checkTime;
 
+    @Autowired
+    private Environment environment;
+
+    private int timeOutMin;
 
     public String getHTML(List<INewsPageTopWordsWithLink> pageList) {
 
@@ -32,7 +39,7 @@ public class HTMLService {
         htmlCode += "" + "<body><table width = \"100%\" ><tbody>" +
                 "<tr><td align = \"center\"><h2>Top Tags from News Pages</h2></td></tr>";
 
-        htmlCode += "<tr><td><p align = \"center\">Data update Time: " + checkTime.getTime() + "</p></td></tr>";
+        htmlCode += "" + addUpdateAndPeriodTable();
         htmlCode += "<tr><td align = \"center\"><table border style = \"border: 1px;  border-collapse: collapse\"><tbody>";
 
         htmlCode += addWebDomainToTitle(pageList);
@@ -85,6 +92,25 @@ public class HTMLService {
     private String addPageRefreshTimerTag(){
 
         return "<head><meta http-equiv=\"refresh\" content=\"300\"></head>";
+    }
+
+    private String addUpdateAndPeriodTable() {
+        String html = "";
+
+        timeOutMin = Integer.parseInt(environment.getProperty("timeOutMin"));
+
+        html += "<tr><td align = \"right\">";
+        html += "<table width = \"100%\"><tbody>";
+
+        html += "<tr><td align = \"right\">Data update Time: </td><td align = \"left\">" + checkTime.getTime() + "</td></tr>";
+        html += "<tr><td align = \"right\">Data scan Time: </td><td align = \"left\">" + checkTime.getTime() + "</td></tr>";
+        html += "<tr><td align = \"right\">Scaning timeout, mins: </td><td align = \"left\">" + timeOutMin + "</td></tr>";
+
+        html += "</tbody></table>";
+
+        html += "</td></tr>";
+
+        return html;
     }
 
     private String cleanWebDomain(String domainName){
