@@ -3,13 +3,17 @@ package com.vcs.toptags.rest_controllers;
 import com.vcs.toptags.actions.ActionsWithDataSources;
 import com.vcs.toptags.db.IWordsDB;
 import com.vcs.toptags.db.WordsDB;
+import com.vcs.toptags.io.CheckTime;
 import com.vcs.toptags.io.RereadDelay;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 
 @Component
 public class CalculationThread extends Thread {
     public static IWordsDB LAST_TOP_WORDS = new WordsDB();
+    public static String SCAN_TIME;
     private int timeOutMin = getTimeOutMin();
 
     @Override
@@ -17,7 +21,7 @@ public class CalculationThread extends Thread {
         while (true) {
 
             getNewData();
-
+            SCAN_TIME = new CheckTime().getTime();
             try {
 
                 Thread.sleep(timeOutMin * 60000);

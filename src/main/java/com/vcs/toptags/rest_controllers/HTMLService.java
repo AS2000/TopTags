@@ -3,15 +3,13 @@ package com.vcs.toptags.rest_controllers;
 import com.vcs.toptags.cleaning_process.CleanWebDomain;
 import com.vcs.toptags.io.CheckTime;
 import com.vcs.toptags.page_adapters.INewsPageTopWordsWithLink;
-import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Method;
 import java.util.List;
+
+import static com.vcs.toptags.rest_controllers.CalculationThread.SCAN_TIME;
 
 @Component
 public class HTMLService {
@@ -30,7 +28,7 @@ public class HTMLService {
     }
 
 
-    private String generateHTML(List<INewsPageTopWordsWithLink> pageList){
+    private String generateHTML(List<INewsPageTopWordsWithLink> pageList) {
 
         String htmlCode;
 
@@ -89,7 +87,7 @@ public class HTMLService {
 //    }
 
     // Browser refresh timer: 300 sec = 5 min.
-    private String addPageRefreshTimerTag(){
+    private String addPageRefreshTimerTag() {
 
         return "<head><meta http-equiv=\"refresh\" content=\"300\"></head>";
     }
@@ -102,9 +100,9 @@ public class HTMLService {
         html += "<tr><td align = \"right\">";
         html += "<table width = \"100%\"><tbody>";
 
-        html += "<tr><td align = \"right\">Data update Time: </td><td align = \"left\">" + checkTime.getTime() + "</td></tr>";
-        html += "<tr><td align = \"right\">Data scan Time: </td><td align = \"left\">" + checkTime.getTime() + "</td></tr>";
-        html += "<tr><td align = \"right\">Scaning timeout, mins: </td><td align = \"left\">" + timeOutMin + "</td></tr>";
+        html += "<tr><td align = \"right\">Page refresh Time: </td><td align = \"left\">" + checkTime.getTime() + "</td></tr>";
+        html += "<tr><td align = \"right\">Data scan Time: </td><td align = \"left\">" + SCAN_TIME + "</td></tr>";
+        html += "<tr><td align = \"right\">Scanning timeout, min: </td><td align = \"left\">" + timeOutMin + "</td></tr>";
 
         html += "</tbody></table>";
 
@@ -113,7 +111,7 @@ public class HTMLService {
         return html;
     }
 
-    private String cleanWebDomain(String domainName){
+    private String cleanWebDomain(String domainName) {
 
         return new CleanWebDomain().getCleanWebDomain(domainName);
     }
@@ -190,7 +188,7 @@ public class HTMLService {
             html += "<tr>";
 
             // First Column
-            html += "<td align = \"center\">"+ count++ + "</td>";
+            html += "<td align = \"center\">" + count++ + "</td>";
 
             html += getDataFromArrayCell(pageList, i);
 

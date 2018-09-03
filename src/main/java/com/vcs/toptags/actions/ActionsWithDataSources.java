@@ -5,20 +5,11 @@ import com.vcs.toptags.cleaning_process.CleanAndCalculate;
 import com.vcs.toptags.io.TopWordsQty;
 import com.vcs.toptags.page_adapters.INewsPage;
 import com.vcs.toptags.page_adapters.NewsPageObjects;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@PropertySource("application.properties")
-@Component
+
 public class ActionsWithDataSources {
-
-//    @Value("${qtyTopWords}")
-//    private static int qtyTopWords;
-
 
     public List<INewsPage> actionsWithNewsWebPages() {
         int qtyTopWords = getQtyTopWords();
