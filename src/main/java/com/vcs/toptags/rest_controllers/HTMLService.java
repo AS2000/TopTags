@@ -27,7 +27,9 @@ public class HTMLService {
 
         String htmlCode;
 
-        htmlCode = "" + "<!DOCTYPE html><html><body><table width = \"100%\" ><tbody>" +
+        htmlCode = "" + "<!DOCTYPE html><html>";
+        htmlCode += "" + addPageRefreshTimerTag();
+        htmlCode += "" + "<body><table width = \"100%\" ><tbody>" +
                 "<tr><td align = \"center\"><h2>Top Tags from News Pages</h2></td></tr>";
 
         htmlCode += "<tr><td><p align = \"center\">Data update Time: " + checkTime.getTime() + "</p></td></tr>";
@@ -79,6 +81,11 @@ public class HTMLService {
 //        return html;
 //    }
 
+    // Browser refresh timer: 300 sec = 5 min.
+    private String addPageRefreshTimerTag(){
+
+        return "<head><meta http-equiv=\"refresh\" content=\"300\"></head>";
+    }
 
     private String cleanWebDomain(String domainName){
 
@@ -95,7 +102,7 @@ public class HTMLService {
 
         for (int j = 0; j < pageList.size(); j++) {
 
-            html += "<td style = \"padding: 5px\" align = \"center\">";
+            html += "<td style = \"padding: 2px\" align = \"center\">";
 
             html += "<a href = \"/json/" + cleanWebDomain(pageList.get(j).getWebDomain()) + "\"><b>" + cleanWebDomain(pageList.get(j).getWebDomain()) + "</b></a>";
 
@@ -133,7 +140,7 @@ public class HTMLService {
         html += "<tr>";
 
         // First Column
-        html += "<td align = \"center\" style = \"padding: 5px\"><b>Unique<br>Words Qty.</b></td>";
+        html += "<td align = \"center\" style = \"padding: 2px\"><b>Unique<br>Words Qty.</b></td>";
 
 
         for (int j = 0; j < pageList.size(); j++) {
@@ -172,7 +179,7 @@ public class HTMLService {
         String html = "";
 
         for (int k = 0; k < pageList.size(); k++) {
-            html += "<td align = \"center\" style = \"padding: 5px\">";
+            html += "<td align = \"center\" style = \"padding: 2px\">";
 
             html += (pageList.get(k)).getFilteredTopWordsArray()[i];
 
