@@ -33,11 +33,19 @@ public class HTMLService {
         String htmlCode;
 
         htmlCode = "" + "<!DOCTYPE html><html>";
+        htmlCode += "<head";
+
         htmlCode += "" + addPageRefreshTimerTag();
-        htmlCode += "" + "<body><table width = \"100%\" ><tbody>" +
-                "<tr><td align = \"center\"><h2>Top Tags from News Pages</h2></td></tr>";
+        htmlCode += "" + addCSS();
+
+        htmlCode += "</head>";
+
+        htmlCode += "<body><table width = \"100%\"><tbody>";
 
         htmlCode += "" + addUpdateAndPeriodTable();
+
+        htmlCode += "<tr><td align = \"center\" ><h2>Top Tags from News Pages</h2></td></tr>";
+
         htmlCode += "<tr><td align = \"center\"><table border style = \"border: 1px;  border-collapse: collapse\"><tbody>";
 
         htmlCode += addWebDomainToTitle(pageList);
@@ -54,7 +62,11 @@ public class HTMLService {
 
 //        htmlCode += addLineToTable(pageList, firstColumnData, methodName);
 
-        htmlCode += "" + "</tbody></table>" + "</td></tr></tbody></table></body></html>";
+        htmlCode += "</tbody></table>" + "</td></tr>";
+
+        htmlCode += "" + addCopyright();
+
+        htmlCode += "</tbody></table></body></html>";
 
         return htmlCode;
     }
@@ -89,7 +101,21 @@ public class HTMLService {
     // Browser refresh timer: 300 sec = 5 min.
     private String addPageRefreshTimerTag() {
 
-        return "<head><meta http-equiv=\"refresh\" content=\"300\"></head>";
+        return "<meta http-equiv=\"refresh\" content=\"300\">";
+    }
+
+    // Text Style - CSS
+    private String addCSS() {
+        String html = "";
+
+        html += "<style> ";
+
+        html += "td { padding: 2px; vertical-align: center; }" +
+                "h2 { margin-top: 0px; margin-bottom: 0px; }";
+
+        html += "</style>";
+
+        return html;
     }
 
     private String addUpdateAndPeriodTable() {
@@ -126,7 +152,7 @@ public class HTMLService {
 
         for (int j = 0; j < pageList.size(); j++) {
 
-            html += "<td style = \"padding: 2px\" align = \"center\">";
+            html += "<td align = \"center\">";
 
             html += "<a href = \"/json/" + cleanWebDomain(pageList.get(j).getWebDomain()) + "\"><b>" + cleanWebDomain(pageList.get(j).getWebDomain()) + "</b></a>";
 
@@ -203,7 +229,7 @@ public class HTMLService {
         String html = "";
 
         for (int k = 0; k < pageList.size(); k++) {
-            html += "<td align = \"center\" style = \"padding: 2px\">";
+            html += "<td align = \"center\">";
 
             html += (pageList.get(k)).getFilteredTopWordsArray()[i];
 
@@ -212,5 +238,16 @@ public class HTMLService {
 
         return html;
     }
+
+    private String addCopyright() {
+        String html = "";
+
+        html += "<tr><td align = \"center\" style = \"height: 15px\"> </td></tr>";
+        html += "<tr><td align = \"center\"><i>Project was created by Anton Šepetko.</i></td></tr>";
+        html += "<tr><td align = \"center\">© 2018.</td></tr>";
+
+        return html;
+    }
+
 
 }

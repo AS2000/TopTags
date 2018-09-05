@@ -10,7 +10,7 @@ public class NewsPageTopWords implements INewsPageTopWords {
 
     public NewsPageTopWords(String[] filteredTopWordsArray) {
 
-            this.filteredTopWordsArray = filteredTopWordsArray;
+        this.filteredTopWordsArray = filteredTopWordsArray;
     }
 
     @Override
