@@ -15,9 +15,11 @@ public class OpenUselesWordFile {
 
     private List<String> loadList() {
 
-        final String FILE_NAME = "uselesswords.txt";
+        String FILE_NAME = "";
 
         try {
+            File jarFile = new File("");
+            FILE_NAME +="" + jarFile.getAbsolutePath() + File.separator + "uselesswords.txt";
             File file = new File(FILE_NAME);
 
             // Patikrinimas ar failas egzistuoja
