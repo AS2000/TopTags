@@ -37,6 +37,7 @@ public class HTMLService {
 
         htmlCode += "" + addPageRefreshTimerTag();
         htmlCode += "" + addCSS();
+        htmlCode += "" + addGoogleAnalytics();
 
         htmlCode += "</head>";
 
@@ -114,6 +115,22 @@ public class HTMLService {
                 "h2 { margin-top: 0px; margin-bottom: 0px; }";
 
         html += "</style>";
+
+        return html;
+    }
+
+    // Text Add Google Analytics Tracking Code
+    private String addGoogleAnalytics() {
+        String html = "";
+
+        html += "<!-- Global site tag (gtag.js) - Google Analytics -->" +
+                "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-125403300-1\"></script>" +
+                "<script>" +
+                "  window.dataLayer = window.dataLayer || [];" +
+                "  function gtag(){dataLayer.push(arguments);}" +
+                "  gtag('js', new Date());" +
+                "  gtag('config', 'UA-125403300-1');" +
+                "</script>";
 
         return html;
     }
