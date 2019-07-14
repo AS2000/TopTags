@@ -1,6 +1,6 @@
 package lt.vianet.toptags.cleaning_process;
 
-import lt.vianet.toptags.io.OpenUselesWordFile;
+import lt.vianet.toptags.utils.OpenUselesWordFile;
 
 import java.util.List;
 

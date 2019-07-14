@@ -1,6 +1,6 @@
 package lt.vianet.toptags.cleaning_process;
 
-import lt.vianet.toptags.io.URLReader;
+import lt.vianet.toptags.utils.URLReader;
 import lt.vianet.toptags.page_adapters.INewsPage;
 
 import java.util.ArrayList;

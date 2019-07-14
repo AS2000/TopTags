@@ -2,7 +2,7 @@ package lt.vianet.toptags.cleaning_process;
 
 import lt.vianet.toptags.counting.CountWords;
 import lt.vianet.toptags.counting.TopWords;
-import lt.vianet.toptags.io.HtmlFromActiveLinks;
+import lt.vianet.toptags.utils.HtmlFromActiveLinks;
 import lt.vianet.toptags.page_adapters.INewsPage;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package lt.vianet.toptags.actions;
 
 import lt.vianet.toptags.cleaning_process.ActiveLinksFromJS;
 import lt.vianet.toptags.cleaning_process.CleanAndCalculate;
-import lt.vianet.toptags.io.TopWordsQty;
+import lt.vianet.toptags.utils.TopWordsQty;
 import lt.vianet.toptags.page_adapters.INewsPage;
 import lt.vianet.toptags.page_adapters.NewsPageObjects;
 

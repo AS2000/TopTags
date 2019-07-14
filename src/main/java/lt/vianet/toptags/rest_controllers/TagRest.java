@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/")
 public class TagRest {
@@ -33,11 +32,9 @@ public class TagRest {
 
         for (INewsPage page : CalculationThread.LAST_TOP_WORDS.getWordsDB()) {
             if (page.getWebDomain().contains(web)) {
-
                 return new NewsPageTopWords(page.getFilteredTopWordsArray());
             }
         }
-
         return new NewsPageTopWords();
     }
 
@@ -53,7 +50,6 @@ public class TagRest {
         for (INewsPage page : CalculationThread.LAST_TOP_WORDS.getWordsDB()) {
             pageList.add(new NewsPageTopWordsWithLink(page.getWebDomain(), page.getFilteredTopWordsArray(), page.getCheckedWordsQty(), page.getUniqueWordsQty()));
         }
-
         return pageList;
     }
 }

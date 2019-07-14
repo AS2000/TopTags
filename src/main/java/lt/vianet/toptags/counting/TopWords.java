@@ -1,13 +1,18 @@
 package lt.vianet.toptags.counting;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Collections;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class TopWords {
 
-    public String[] getTopWords(Map<String, Integer> map, int qtyTopWords) {
+    private static final Logger LOG = LoggerFactory.getLogger(TopWords.class);
 
+    public String[] getTopWords(Map<String, Integer> map, int qtyTopWords) {
         return calculateTop(map, qtyTopWords);
     }
 
@@ -15,8 +20,13 @@ public class TopWords {
         String[] array = new String[qtyTopWords];
 
         // searching for the highest number of word Repeats - topRepeats
-        int topRepeats = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getValue();
+        int topRepeats = 0;
 
+        try {
+            topRepeats = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getValue();
+        } catch (NoSuchElementException nee) {
+            LOG.error(nee.getMessage(), nee);
+        }
         // number of TOP Words
         int count = 0;
         for (int i = topRepeats; i > 0; i--) {
@@ -24,11 +34,10 @@ public class TopWords {
             for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
                 if (i == entry.getValue()) {
-
                     array[count] = entry.getKey();
-
                     // counting TOP words Qty.
                     count++;
+
                     if (count == qtyTopWords) {
                         break;
                     }

@@ -1,7 +1,7 @@
 package lt.vianet.toptags.rest_controllers;
 
 import lt.vianet.toptags.cleaning_process.CleanWebDomain;
-import lt.vianet.toptags.io.CheckTime;
+import lt.vianet.toptags.utils.CheckTime;
 import lt.vianet.toptags.page_adapters.INewsPageTopWordsWithLink;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -23,10 +23,8 @@ public class HTMLService {
     private int timeOutMin;
 
     public String getHTML(List<INewsPageTopWordsWithLink> pageList) {
-
         return generateHTML(pageList);
     }
-
 
     private String generateHTML(List<INewsPageTopWordsWithLink> pageList) {
 
@@ -34,27 +32,17 @@ public class HTMLService {
 
         htmlCode = "" + "<!DOCTYPE html><html>";
         htmlCode += "<head";
-
         htmlCode += "" + addPageRefreshTimerTag();
         htmlCode += "" + addCSS();
         htmlCode += "" + addGoogleAnalytics();
-
         htmlCode += "</head>";
-
         htmlCode += "<body><table width = \"100%\"><tbody>";
-
         htmlCode += "" + addUpdateAndPeriodTable();
-
         htmlCode += "<tr><td align = \"center\" ><h2>Top Tags from News Pages</h2></td></tr>";
-
         htmlCode += "<tr><td align = \"center\"><table border style = \"border: 1px;  border-collapse: collapse\"><tbody>";
-
         htmlCode += addWebDomainToTitle(pageList);
-
         htmlCode += addWordsCheckedQtyToTitle(pageList);
-
         htmlCode += addUniqueWordsQtyToTitle(pageList);
-
         htmlCode += addDataFromArray(pageList);
 
 //        String firstColumnData = "<span align = \"center\"><a href = \"/json\"> /json</a></span>";
@@ -64,9 +52,7 @@ public class HTMLService {
 //        htmlCode += addLineToTable(pageList, firstColumnData, methodName);
 
         htmlCode += "</tbody></table>" + "</td></tr>";
-
         htmlCode += "" + addCopyright();
-
         htmlCode += "</tbody></table></body></html>";
 
         return htmlCode;
