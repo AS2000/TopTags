@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static lt.vianet.toptags.rest_controllers.CalculationThread.SCAN_TIME;
+import static lt.vianet.toptags.rest_controllers.Calculation.SCAN_TIME;
 
 @Component
 public class HTMLService {

@@ -1,6 +1,7 @@
 package lt.vianet.toptags.actions;
 
-import lt.vianet.toptags.rest_controllers.CalculationThread;
+import lt.vianet.toptags.rest_controllers.Calculation;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,12 +9,11 @@ import javax.annotation.PostConstruct;
 @Component
 public class Actions {
 
-    @PostConstruct
     public void actionsWithNewsWebPages() throws InterruptedException {
 
-        // Visu duomenu is puslapio gavimo metodas
-        CalculationThread thread = new CalculationThread();
-        thread.start();
+
+        Calculation thread = new Calculation();
+
     }
 
 

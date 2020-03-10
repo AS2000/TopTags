@@ -8,35 +8,26 @@ import lt.vianet.toptags.utils.RereadDelay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CalculationThread extends Thread {
+public class Calculation {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CalculationThread.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Calculation.class);
 
     public static IWordsDB LAST_TOP_WORDS = new WordsDB();
     public static String SCAN_TIME;
     private int timeOutMin = getTimeOutMin();
 
-    @Override
-    @Scope("prototype")
-    public void run() {
-        while (true) {
-
-            getNewData();
-            SCAN_TIME = new CheckTime().getTime();
-            try {
-                Thread.sleep(timeOutMin * 60000);
-            } catch (InterruptedException ie) {
-                LOG.error(ie.getMessage(), ie);
-            }
-        }
-    }
-
+    // Visu duomenu is puslapio gavimo metodas
+    @Scheduled(fixedRate = 900000)
     private void getNewData() {
+        System.out.println("15 min");
         LAST_TOP_WORDS.setWordsDB((new ActionsWithDataSources()).actionsWithNewsWebPages());
     }
+//                LOG.error(ie.getMessage(), ie);
+
 
     // Get Timeout Minutes of Listed Words form /src/main/resources
     private int getTimeOutMin() {

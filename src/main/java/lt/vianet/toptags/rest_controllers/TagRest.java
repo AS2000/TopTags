@@ -30,7 +30,7 @@ public class TagRest {
     @RequestMapping(value = "/json/{web}", method = RequestMethod.GET)
     public INewsPageTopWords getPage(@PathVariable("web") String web) {
 
-        for (INewsPage page : CalculationThread.LAST_TOP_WORDS.getWordsDB()) {
+        for (INewsPage page : Calculation.LAST_TOP_WORDS.getWordsDB()) {
             if (page.getWebDomain().contains(web)) {
                 return new NewsPageTopWords(page.getFilteredTopWordsArray());
             }
@@ -47,7 +47,7 @@ public class TagRest {
 
     private List<INewsPageTopWordsWithLink> getPageObjectWithWebAndQty() {
         List<INewsPageTopWordsWithLink> pageList = new ArrayList<>();
-        for (INewsPage page : CalculationThread.LAST_TOP_WORDS.getWordsDB()) {
+        for (INewsPage page : Calculation.LAST_TOP_WORDS.getWordsDB()) {
             pageList.add(new NewsPageTopWordsWithLink(page.getWebDomain(), page.getFilteredTopWordsArray(), page.getCheckedWordsQty(), page.getUniqueWordsQty()));
         }
         return pageList;
